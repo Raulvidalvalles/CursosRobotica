@@ -38,4 +38,4 @@ jobs:
         working-directory: a0-project
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build --platform android --profile production --non-interactive
+        run: eas build --platform android --profile production --non-interactive --auto-submit-with-profile=false
