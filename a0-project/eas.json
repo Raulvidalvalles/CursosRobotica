@@ -23,7 +23,7 @@
     "production": {
       "android": {
         "buildType": "apk",
-        "credentialsSource": "local"
+        "credentialsSource": "remote"
       },
       "ios": {
         "buildConfiguration": "Release"
