@@ -21,13 +21,9 @@ jobs:
         working-directory: a0-project
         run: npm install --legacy-peer-deps
 
-      - name: Install EAS CLI globally
-        run: npm install -g eas-cli
+      - name: Install latest EAS CLI globally
+        run: npm install -g eas-cli@latest
 
-      - name: Authenticate with Expo
+      - name: Trigger Android build (authenticated via token)
         working-directory: a0-project
-        run: eas whoami || eas auth:login --token ${{ secrets.EXPO_TOKEN }}
-
-      - name: Trigger Android build
-        working-directory: a0-project
-        run: eas build --platform android --profile production --non-interactive
+        run: eas build --platform android --profile production --non-interactive --token ${{ secrets.EXPO_TOKEN }}
