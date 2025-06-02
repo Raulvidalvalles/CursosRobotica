@@ -34,15 +34,8 @@ jobs:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: eas init --non-interactive --force
         
-      - name: Setup Android credentials
+      - name: Build Android APK (Preview Profile)
         working-directory: a0-project
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: |
-          eas credentials -p android --non-interactive || echo "Credentials setup attempted"
-          
-      - name: Build Android APK
-        working-directory: a0-project
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build --platform android --profile production --non-interactive --auto-submit-with-profile=false
+        run: eas build --platform android --profile preview --non-interactive --auto-submit-with-profile=false
