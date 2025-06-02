@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "a0-project",
-    "slug": "snack-b59d1bce-c794-4885-871f-dc37513db2c1",
+    "slug": "a0-project",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,13 +13,15 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.borja.a0project"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.borja.a0project"
     },
     "web": {
       "favicon": "./assets/favicon.png"
