@@ -17,14 +17,20 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Change to project directory
+        run: cd a0-project
+
       - name: Install dependencies
+        working-directory: a0-project
         run: npm install
 
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
       - name: Authenticate with Expo
+        working-directory: a0-project
         run: eas whoami || eas login --token ${{ secrets.EXPO_TOKEN }}
 
       - name: Trigger Android build
+        working-directory: a0-project
         run: eas build --platform android --profile production --non-interactive
