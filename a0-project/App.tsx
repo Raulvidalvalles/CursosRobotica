@@ -17,6 +17,8 @@ import LoginScreen from "./screens/LoginScreen";
 import AdminDashboardScreen from "./screens/admin/AdminDashboardScreen";
 import AdminProjectsScreen from "./screens/admin/AdminProjectsScreen";
 import AdminEditProjectScreen from "./screens/admin/AdminEditProjectScreen";
+import AdminStudentsScreen from "./screens/admin/AdminStudentsScreen"; // Nueva pantalla
+import AdminStatisticsScreen from "./screens/admin/AdminStatisticsScreen"; // Nueva pantalla
 import StudentDashboardScreen from "./screens/student/StudentDashboardScreen";
 import ProjectsListScreen from "./screens/student/ProjectsListScreen";
 import StudentProfileScreen from "./screens/student/StudentProfileScreen";
@@ -110,6 +112,16 @@ function AppNavigator() {
             name="AdminEditProject" 
             component={AdminEditProjectScreen}
             options={{ headerShown: true, title: 'Editar Proyecto' }}
+          />
+          <Stack.Screen 
+            name="AdminStudents" 
+            component={AdminStudentsScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen 
+            name="AdminStatistics" 
+            component={AdminStatisticsScreen}
+            options={{ headerShown: false }}
           />
           <Stack.Screen 
             name="ProjectDetail" 

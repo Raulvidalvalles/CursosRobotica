@@ -6,8 +6,10 @@ import { StatusBar } from 'expo-status-bar';
 import { AuthContext } from '../../contexts/AuthContext';
 import { ProjectsContext } from '../../contexts/ProjectsContext';
 import { Button } from '../../components/Button';
+import { useNavigation } from '@react-navigation/native';
 
 export default function AdminDashboardScreen() {
+  const navigation = useNavigation();
   const { user, logout } = useContext(AuthContext);
   const { projects, studentProjects } = useContext(ProjectsContext);
   
@@ -43,6 +45,19 @@ export default function AdminDashboardScreen() {
       color: '#7E57C2',
     },
   ];
+
+  // Funciones de navegación
+  const handleNewProject = () => {
+    navigation.navigate('AdminEditProject' as never, { project: null } as never);
+  };
+
+  const handleViewStudents = () => {
+    navigation.navigate('AdminStudents' as never);
+  };
+
+  const handleViewStatistics = () => {
+    navigation.navigate('AdminStatistics' as never);
+  };
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -112,21 +127,21 @@ export default function AdminDashboardScreen() {
           <Text style={styles.sectionTitle}>Acciones Rápidas</Text>
           
           <View style={styles.actionsContainer}>
-            <TouchableOpacity style={styles.actionButton}>
+            <TouchableOpacity style={styles.actionButton} onPress={handleNewProject}>
               <View style={[styles.actionIcon, { backgroundColor: '#4E7BF220' }]}>
                 <Ionicons name="add-circle" size={24} color="#4E7BF2" />
               </View>
               <Text style={styles.actionText}>Nuevo Proyecto</Text>
             </TouchableOpacity>
             
-            <TouchableOpacity style={styles.actionButton}>
+            <TouchableOpacity style={styles.actionButton} onPress={handleViewStudents}>
               <View style={[styles.actionIcon, { backgroundColor: '#FF980020' }]}>
                 <Ionicons name="people" size={24} color="#FF9800" />
               </View>
               <Text style={styles.actionText}>Ver Estudiantes</Text>
             </TouchableOpacity>
             
-            <TouchableOpacity style={styles.actionButton}>
+            <TouchableOpacity style={styles.actionButton} onPress={handleViewStatistics}>
               <View style={[styles.actionIcon, { backgroundColor: '#7E57C220' }]}>
                 <Ionicons name="stats-chart" size={24} color="#7E57C2" />
               </View>
