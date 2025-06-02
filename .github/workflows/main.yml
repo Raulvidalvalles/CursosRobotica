@@ -24,6 +24,8 @@ jobs:
       - name: Install latest EAS CLI globally
         run: npm install -g eas-cli@latest
 
-      - name: Trigger Android build (authenticated via token)
+      - name: Trigger Android build (with EXPO_TOKEN env)
         working-directory: a0-project
-        run: eas build --platform android --profile production --non-interactive --token ${{ secrets.EXPO_TOKEN }}
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: eas build --platform android --profile production --non-interactive
