@@ -26,7 +26,7 @@ jobs:
 
       - name: Authenticate with Expo
         working-directory: a0-project
-        run: eas whoami || eas login --token ${{ secrets.EXPO_TOKEN }}
+        run: eas whoami || eas auth:login --token ${{ secrets.EXPO_TOKEN }}
 
       - name: Trigger Android build
         working-directory: a0-project
