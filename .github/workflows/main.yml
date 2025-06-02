@@ -17,14 +17,11 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Change to project directory
-        run: cd a0-project
-
-      - name: Install dependencies
+      - name: Install dependencies (with legacy-peer-deps)
         working-directory: a0-project
-        run: npm install
+        run: npm install --legacy-peer-deps
 
-      - name: Install EAS CLI
+      - name: Install EAS CLI globally
         run: npm install -g eas-cli
 
       - name: Authenticate with Expo
