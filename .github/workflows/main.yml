@@ -20,16 +20,16 @@ jobs:
         run: npm install --legacy-peer-deps
         
       - name: Install EAS CLI
-        run: npm install -g @expo/eas-cli@latest
+        run: npm install -g eas-cli@latest
         
       - name: Verify Expo authentication
         working-directory: a0-project
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: npx eas whoami
+        run: eas whoami
         
       - name: Build Android APK
         working-directory: a0-project
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: npx eas build --platform android --profile production --non-interactive
+        run: eas build --platform android --profile production --non-interactive
