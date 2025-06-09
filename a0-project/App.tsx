@@ -33,11 +33,13 @@ function AdminTabs() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+          let iconName: keyof typeof Ionicons.glyphMap;
           if (route.name === 'AdminDashboard') {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'AdminProjects') {
             iconName = focused ? 'folder' : 'folder-outline';
+          } else {
+            iconName = 'ellipse-outline';
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
@@ -63,13 +65,15 @@ function StudentTabs() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+          let iconName: keyof typeof Ionicons.glyphMap;
           if (route.name === 'StudentDashboard') {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'ProjectsList') {
             iconName = focused ? 'list' : 'list-outline';
           } else if (route.name === 'StudentProfile') {
             iconName = focused ? 'person' : 'person-outline';
+          } else {
+            iconName = 'ellipse-outline';
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },

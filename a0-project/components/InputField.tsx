@@ -19,7 +19,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   return (
     <View style={[styles.container, containerStyle]}>
       <Text style={styles.label}>{label}</Text>
-      <View style={[styles.inputContainer, error && styles.errorInput]}>
+      <View style={[styles.inputContainer, error ? styles.errorInput : null]}>
         {icon && (
           <Ionicons name={icon as any} size={20} color="#666" style={styles.icon} />
         )}

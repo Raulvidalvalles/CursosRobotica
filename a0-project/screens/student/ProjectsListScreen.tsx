@@ -12,12 +12,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ProjectsContext, Project, Category, Difficulty } from '../../contexts/ProjectsContext';
+import type { RootStackParamList, StudentTabNavigationProp } from '../../types/navigation';
 import { ProjectCard } from '../../components/ProjectCard';
 import { ScrollView } from 'react-native-gesture-handler';
 
+type ProjectsListNavigationProp = StudentTabNavigationProp;
+
 export default function ProjectsListScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<ProjectsListNavigationProp>();
   const { projects, loading } = useContext(ProjectsContext);
   
   // Solo mostrar proyectos disponibles
@@ -180,7 +184,7 @@ export default function ProjectsListScreen() {
           renderItem={({ item }) => (
             <TouchableOpacity 
               activeOpacity={0.9}
-              onPress={() => navigation.navigate('ProjectDetail' as never, { project: item } as never)}
+              onPress={() => navigation.navigate('ProjectDetail', { project: item })}
             >
               <ProjectCard
                 id={item.id}
@@ -190,7 +194,7 @@ export default function ProjectsListScreen() {
                 difficulty={item.difficulty}
                 category={item.category}
                 duration={item.duration}
-                onPress={() => navigation.navigate('ProjectDetail' as never, { project: item } as never)}
+                onPress={() => navigation.navigate('ProjectDetail', { project: item })}
               />
             </TouchableOpacity>
           )}

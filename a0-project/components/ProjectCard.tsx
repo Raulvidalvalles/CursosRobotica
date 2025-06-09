@@ -34,7 +34,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     advanced: '#F44336', // Rojo
   };
 
-  const categoryIcon = {
+  const categoryIcon: Record<string, keyof typeof Ionicons.glyphMap> = {
     mechanics: 'cog',
     electronics: 'flash',
     programming: 'code-slash',

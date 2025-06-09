@@ -11,14 +11,18 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ProjectsContext, Project } from '../../contexts/ProjectsContext';
+import type { RootStackParamList } from '../../types/navigation';
 import { Button } from '../../components/Button';
 import { ProjectCard } from '../../components/ProjectCard';
 import { toast } from 'sonner-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
+type AdminProjectsNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 export default function AdminProjectsScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<AdminProjectsNavigationProp>();
   const { projects, loading, deleteProject } = useContext(ProjectsContext);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null);
@@ -54,11 +58,11 @@ export default function AdminProjectsScreen() {
   });
   
   const handleCreateProject = () => {
-    navigation.navigate('AdminEditProject' as never, { project: null } as never);
+    navigation.navigate('AdminEditProject', { project: null });
   };
   
   const handleEditProject = (project: Project) => {
-    navigation.navigate('AdminEditProject' as never, { project } as never);
+    navigation.navigate('AdminEditProject', { project });
   };
   
   const handleDeleteProject = (project: Project) => {

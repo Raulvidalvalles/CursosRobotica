@@ -5,7 +5,8 @@ import {
   Text, 
   FlatList, 
   Image, 
-  TouchableOpacity 
+  TouchableOpacity,
+  ListRenderItem
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -13,6 +14,17 @@ import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../contexts/AuthContext';
 import { ProjectsContext } from '../../contexts/ProjectsContext';
 import { StatusBar } from 'expo-status-bar';
+
+type Student = {
+  id: string;
+  username: string;
+  name: string;
+  avatar: string;
+  grade: string;
+  joinedDate: string;
+  projectsCount: number;
+  completedCount: number;
+};
 
 export default function AdminStudentsScreen() {
   const navigation = useNavigation();
@@ -67,7 +79,7 @@ export default function AdminStudentsScreen() {
     navigation.goBack();
   };
 
-  const renderStudentCard = ({ item }) => {
+  const renderStudentCard: ListRenderItem<Student> = ({ item }) => {
     const progressPercentage = item.projectsCount > 0
       ? Math.round((item.completedCount / item.projectsCount) * 100)
       : 0;

@@ -4,11 +4,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AuthContext } from '../../contexts/AuthContext';
 import { ProjectsContext } from '../../contexts/ProjectsContext';
+import type { StudentTabNavigationProp } from '../../types/navigation';
 
 export default function StudentDashboardScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StudentTabNavigationProp>();
   const { user, logout } = useContext(AuthContext);
   const { projects, studentProjects } = useContext(ProjectsContext);
   
@@ -17,6 +19,7 @@ export default function StudentDashboardScreen() {
     .filter(sp => sp.studentId === user?.id)
     .map(sp => {
       const project = projects.find(p => p.id === sp.projectId);
+      if (!project) return null;
       return {
         ...project,
         startDate: sp.startDate,
@@ -24,7 +27,7 @@ export default function StudentDashboardScreen() {
         isCompleted: sp.isCompleted
       };
     })
-    .filter(Boolean);
+    .filter((project): project is NonNullable<typeof project> => project !== null);
   
   // Estadísticas del estudiante
   const totalAssigned = assignedProjects.length;
@@ -40,11 +43,11 @@ export default function StudentDashboardScreen() {
     .slice(0, 3);
   
   const handleGoToProjects = () => {
-    navigation.navigate('ProjectsList' as never);
+    navigation.navigate('ProjectsList');
   };
   
   const handleGoToProfile = () => {
-    navigation.navigate('StudentProfile' as never);
+    navigation.navigate('StudentProfile');
   };
 
   return (
@@ -112,7 +115,10 @@ export default function StudentDashboardScreen() {
                 <TouchableOpacity 
                   key={index} 
                   style={styles.projectCard}
-                  onPress={() => navigation.navigate('ProjectDetail' as never, { project, isAssigned: true } as never)}
+                  onPress={() => {
+                    const baseProject = projects.find(p => p.id === project.id);
+                    if (baseProject) navigation.navigate('ProjectDetail', { project: baseProject });
+                  }}
                 >
                   <Image source={{ uri: project?.imageUrl }} style={styles.projectImage} />
                   <View style={styles.projectCardContent}>
@@ -162,7 +168,10 @@ export default function StudentDashboardScreen() {
                 <TouchableOpacity 
                   key={index} 
                   style={styles.projectCard}
-                  onPress={() => navigation.navigate('ProjectDetail' as never, { project } as never)}
+                  onPress={() => {
+                    const baseProject = projects.find(p => p.id === project.id);
+                    if (baseProject) navigation.navigate('ProjectDetail', { project: baseProject });
+                  }}
                 >
                   <Image source={{ uri: project.imageUrl }} style={styles.projectImage} />
                   <View style={styles.projectCardContent}>

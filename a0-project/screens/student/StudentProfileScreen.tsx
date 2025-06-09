@@ -12,13 +12,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import type { StudentTabNavigationProp } from '../../types/navigation';
 import { AuthContext } from '../../contexts/AuthContext';
 import { ProjectsContext } from '../../contexts/ProjectsContext';
 import { Button } from '../../components/Button';
 import { ProjectCard } from '../../components/ProjectCard';
 
 export default function StudentProfileScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StudentTabNavigationProp>();
   const { user, logout } = useContext(AuthContext);
   const { projects, studentProjects } = useContext(ProjectsContext);
   
@@ -28,6 +29,7 @@ export default function StudentProfileScreen() {
       .filter(sp => sp.studentId === user?.id)
       .map(sp => {
         const project = projects.find(p => p.id === sp.projectId);
+        if (!project) return null;
         return {
           ...project,
           studentProjectId: sp.id,
@@ -36,7 +38,7 @@ export default function StudentProfileScreen() {
           isCompleted: sp.isCompleted
         };
       })
-      .filter(Boolean);
+      .filter((project): project is NonNullable<typeof project> => project !== null);
   }, [studentProjects, projects, user]);
   
   // Proyectos completados
@@ -163,9 +165,10 @@ export default function StudentProfileScreen() {
                 duration={project?.duration || ''}
                 isAssigned
                 isCompleted={false}
-                onPress={() => navigation.navigate('ProjectDetail' as never, { 
-                  project, isAssigned: true 
-                } as never)}
+                onPress={() => {
+                  const baseProject = projects.find(p => p.id === project.id);
+                  if (baseProject) navigation.navigate('ProjectDetail', { project: baseProject });
+                }}
               />
             ))
           ) : (
@@ -175,7 +178,7 @@ export default function StudentProfileScreen() {
               <Button
                 title="Explorar Proyectos"
                 size="small"
-                onPress={() => navigation.navigate('ProjectsList' as never)}
+                onPress={() => navigation.navigate('ProjectsList')}
                 style={styles.exploreButton}
               />
             </View>
@@ -198,9 +201,10 @@ export default function StudentProfileScreen() {
                 duration={project?.duration || ''}
                 isAssigned
                 isCompleted
-                onPress={() => navigation.navigate('ProjectDetail' as never, { 
-                  project, isAssigned: true 
-                } as never)}
+                onPress={() => {
+                  const baseProject = projects.find(p => p.id === project.id);
+                  if (baseProject) navigation.navigate('ProjectDetail', { project: baseProject });
+                }}
               />
             ))
           ) : (

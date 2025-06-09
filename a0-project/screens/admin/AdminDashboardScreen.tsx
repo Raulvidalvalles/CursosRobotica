@@ -7,9 +7,13 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { ProjectsContext } from '../../contexts/ProjectsContext';
 import { Button } from '../../components/Button';
 import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../../types/navigation';
+
+type AdminDashboardNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export default function AdminDashboardScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<AdminDashboardNavigationProp>();
   const { user, logout } = useContext(AuthContext);
   const { projects, studentProjects } = useContext(ProjectsContext);
   
@@ -48,15 +52,15 @@ export default function AdminDashboardScreen() {
 
   // Funciones de navegación
   const handleNewProject = () => {
-    navigation.navigate('AdminEditProject' as never, { project: null } as never);
+    navigation.navigate('AdminEditProject', { project: null });
   };
 
   const handleViewStudents = () => {
-    navigation.navigate('AdminStudents' as never);
+    navigation.navigate('AdminStudents');
   };
 
   const handleViewStatistics = () => {
-    navigation.navigate('AdminStatistics' as never);
+    navigation.navigate('AdminStatistics');
   };
 
   return (
