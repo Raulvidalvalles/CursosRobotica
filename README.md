@@ -2,7 +2,7 @@
 
 Una aplicación móvil desarrollada con React Native, diseñada para ofrecer cursos de robótica para niños de una manera divertida e interactiva. La plataforma cuenta con dos roles de usuario (Administrador y Alumno) para una gestión y experiencia de aprendizaje personalizadas.
 
-![Banner o Logo de la App](https://via.placeholder.com/800x200.png?text=RoboLearn+App)
+![Banner o Logo de la App](capturas/logo_app.png)
 
 ## 📋 Tabla de Contenidos
 
