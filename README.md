@@ -148,6 +148,6 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para má
 
 ## 📧 Contacto
 
-**[Raúl Vidal]** - (www.linkedin.com/in/raúl-vidal-vallés-515a7636a) - raulvidalvalles@ejemplo.com
+**[Raúl Vidal]** - www.linkedin.com/in/raúl-vidal-vallés-515a7636a - raulvidalvalles@gmail.com
 
-Link del Proyecto: [https://github.com/tu-usuario/tu-repositorio](https://github.com/Raulvidalvalles/CursosRobotica)
+Link del Proyecto: [https://github.com/Raulvidalvalleso/CursosRobotica]
