@@ -1,5 +1,4 @@
 name: EAS Build (Manual Android Build)
-
 on:
   workflow_dispatch:
 
@@ -7,25 +6,36 @@ jobs:
   build-android:
     name: Build APK with EAS
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-
+        uses: actions/checkout@v4
+        
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
-
-      - name: Install dependencies (with legacy-peer-deps)
+          
+      - name: Install dependencies
         working-directory: a0-project
         run: npm install --legacy-peer-deps
-
-      - name: Install latest EAS CLI globally
+        
+      - name: Install EAS CLI
         run: npm install -g eas-cli@latest
-
-      - name: Trigger Android build (with EXPO_TOKEN env)
+        
+      - name: Verify Expo authentication
         working-directory: a0-project
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas build --platform android --profile production --non-interactive
+        run: eas whoami
+        
+      - name: Initialize EAS project
+        working-directory: a0-project
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: eas init --non-interactive --force
+        
+      - name: Build Android APK (Preview Profile)
+        working-directory: a0-project
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: eas build --platform android --profile preview --non-interactive --auto-submit-with-profile=false
