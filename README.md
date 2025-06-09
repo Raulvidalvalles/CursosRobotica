@@ -50,11 +50,11 @@ Aquí puedes añadir capturas de pantalla de tu aplicación.
 
 | Login                               | Perfil de Alumno                       | Detalle del Curso                       |
 | ----------------------------------- | -------------------------------------- | --------------------------------------- |
-| ![Login](https://via.placeholder.com/300x600.png?text=Pantalla+de+Login) | ![Perfil Alumno](https://via.placeholder.com/300x600.png?text=Perfil+del+Alumno) | ![Detalle Curso](https://via.placeholder.com/300x600.png?text=Detalle+del+Curso) |
+| ![Login](capturas/login) | ![Perfil Alumno](capturas/perfilAlumno) | ![Detalle Curso](capturas/detalleCurso) |
 
 | Panel de Admin                         | Estadísticas de Alumnos (Admin)             | Editor de Actividades (Admin)                   |
 | -------------------------------------- | --------------------------------------------- | ----------------------------------------------- |
-| ![Panel Admin](https://via.placeholder.com/300x600.png?text=Panel+de+Admin) | ![Estadísticas Admin](https://via.placeholder.com/300x600.png?text=Estadísticas+de+Alumnos) | ![Editor Admin](https://via.placeholder.com/300x600.png?text=Editor+de+Actividades) |
+| ![Panel Admin](capturas/esatdisticasAlumnos) | ![Estadísticas Admin]((capturas/esatdisticaAlumno2) | ![Editor Admin](capturas/editorActividades) |
 
 ## 🛠️ Stack Tecnológico
 
