@@ -46,7 +46,7 @@ La aplicación cuenta con dos vistas principales dependiendo del tipo de usuario
 
 ## 📸 Capturas de Pantalla
 
-Aquí puedes añadir capturas de pantalla de tu aplicación.
+Estas son unas capturas de pantalla de cómo se ve la aplicación.
 
 | Login                               | Perfil de Alumno                       | Detalle del Curso                       |
 | ----------------------------------- | -------------------------------------- | --------------------------------------- |
